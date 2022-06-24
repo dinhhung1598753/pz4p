@@ -1,14 +1,18 @@
 <template>
   <v-container>
-    <v-data-table :headers="headers" :items="desserts" class="elevation-1">
+    <v-data-table
+      :headers="headers"
+      :items="desserts"
+      class="elevation-1 app-table"
+    >
       <template #top>
-        <v-toolbar flat>
-          <v-toolbar-title>STAFFS</v-toolbar-title>
+        <v-toolbar flat color="base">
+          <v-toolbar-title class="text-light">STAFFS</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
             <template #activator="{ on, attrs }">
-              <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
+              <v-btn dark class="mb-2" v-bind="attrs" v-on="on">
                 New Item
               </v-btn>
             </template>
@@ -66,7 +70,7 @@
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5"
-                >Are you sure you want to delete this item?</v-card-title
+                >Are you sure you want to delete this staff?</v-card-title
               >
               <v-card-actions>
                 <v-spacer></v-spacer>

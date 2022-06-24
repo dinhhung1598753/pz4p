@@ -1,21 +1,24 @@
 <template>
   <v-app dark>
-    <v-app-bar fixed app>
-      <v-toolbar-title v-text="title" />
+    <v-app-bar fixed app class="app-bar" color="base">
+      <div class="app-title">
+        <nuxt-link to="/">{{ title }}</nuxt-link>
+      </div>
       <v-spacer />
     </v-app-bar>
     <v-main>
       <v-container class="app-menu"
-        ><v-list class="menu-list">
+        ><v-list class="menu-list text-light" color="base">
           <v-list-item
             v-for="(item, i) in items"
             :key="i"
             :to="item.to"
             router
             exact
+            class="text-light"
           >
             <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon class="text-light">{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title v-text="item.title" />
@@ -43,27 +46,27 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-account-injury',
           title: 'Staffs',
           to: '/staffs',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-account-group',
           title: 'Customers',
           to: '/customers',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-calendar-edit',
           title: 'Booking',
           to: '/bookings',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-book-open-blank-variant',
           title: 'Menus',
           to: '/menus',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-file-document-outline',
           title: 'Bills',
           to: '/bills',
         },
@@ -76,13 +79,21 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
+.app-title > a {
+  text-decoration: none;
+  font-size: 30px;
+  color: #fff;
+}
 .app-menu {
   float: left;
   height: 100%;
   width: 20%;
-  background: #333;
+  background: #246241;
   padding: unset;
+  & .text-light {
+    color: $text-light !important;
+  }
 }
 .app-menu > .menu-list {
   padding: 0;
