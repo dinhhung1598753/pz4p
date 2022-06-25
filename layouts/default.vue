@@ -15,7 +15,7 @@
             :to="item.to"
             router
             exact
-            class="text-light"
+            class="text-light menu-item"
           >
             <v-list-item-action>
               <v-icon class="text-light">{{ item.icon }}</v-icon>
@@ -30,7 +30,7 @@
         <Nuxt />
       </div>
     </v-main>
-    <v-footer :absolute="!fixed" app>
+    <v-footer :absolute="!fixed" app color="base" class="app-footer">
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -91,6 +91,7 @@ export default {
   width: 20%;
   background: #246241;
   padding: unset;
+  border-bottom: 1px solid #14462f;
   & .text-light {
     color: $text-light !important;
   }

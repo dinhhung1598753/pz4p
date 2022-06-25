@@ -13,7 +13,7 @@
           <v-dialog v-model="dialog" max-width="500px">
             <template #activator="{ on, attrs }">
               <v-btn dark class="mb-2" v-bind="attrs" v-on="on">
-                New Item
+                New Staff
               </v-btn>
             </template>
             <v-card>
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import { getStaffs } from '@/models'
+import { getStaffs, insertStaff, updateStaff, deleteStaff } from '@/models'
 export default {
   name: 'StaffPage',
   data: () => ({
@@ -138,7 +138,7 @@ export default {
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      return this.editedIndex === -1 ? 'New Staff' : 'Edit Staff'
     },
   },
 
@@ -172,6 +172,7 @@ export default {
     },
 
     deleteItemConfirm() {
+      deleteStaff(this.editedItem.id)
       this.desserts.splice(this.editedIndex, 1)
       this.closeDelete()
     },
@@ -194,8 +195,10 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
+        updateStaff(this.editedItem)
         Object.assign(this.desserts[this.editedIndex], this.editedItem)
       } else {
+        insertStaff(this.editedItem)
         this.desserts.push(this.editedItem)
       }
       this.close()
