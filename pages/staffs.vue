@@ -8,7 +8,7 @@
       <template #top>
         <v-toolbar flat color="base">
           <v-toolbar-title class="text-light">STAFFS</v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
+          <v-divider class="mx-4" inset vertical> </v-divider>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
             <template #activator="{ on, attrs }">
