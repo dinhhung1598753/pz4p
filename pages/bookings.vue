@@ -28,13 +28,68 @@
             @input="menu1 = false"
           ></v-date-picker> </v-menu
       ></v-toolbar-title>
+      <v-toolbar-title class="date-booking">
+        <v-menu
+          ref="menu"
+          v-model="menu2"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          :return-value.sync="time"
+          transition="scale-transition"
+          offset-y
+          max-width="290px"
+          min-width="290px"
+        >
+          <template #activator="{ on, attrs }">
+            <v-text-field
+              v-model="time"
+              prepend-icon="mdi-clock-time-four-outline"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-time-picker
+            v-if="menu2"
+            v-model="time"
+            full-width
+            @click:minute="$refs.menu.save(time)"
+          ></v-time-picker> </v-menu
+      ></v-toolbar-title>
 
       <v-spacer></v-spacer>
+      <v-text-field v-model="search" class="search-field"></v-text-field>
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
-    </v-app-bar></v-container
-  >
+    </v-app-bar>
+    <div class="content">
+      <v-row>
+        <v-col v-for="index in 10" :key="index" cols="4">
+          <v-card class="booking-card" outlined cols="md-3">
+            <v-list-item three-line>
+              <v-list-item-content>
+                <div class="mb-4">BÀN {{ index }}</div>
+                <v-list-item-title class="text-h5 mb-1">
+                  Người đặt bàn
+                </v-list-item-title>
+                <v-list-item-subtitle
+                  >Số điện thoại fonwderfully</v-list-item-subtitle
+                >
+                <v-list-item-subtitle>Giờ hẹn</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-card-actions>
+              <v-btn outlined rounded text> Đặt bàn </v-btn>
+              <v-btn outlined rounded text> Hủy bàn </v-btn>
+              <v-btn outlined rounded text> Thanh toán </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -49,8 +104,10 @@ export default {
         .toISOString()
         .substr(0, 10)
     ),
+    time: '',
     menu1: false,
     menu2: false,
+    search: '',
   }),
 
   computed: {
@@ -64,7 +121,7 @@ export default {
       this.dateFormatted = this.formatDate(this.date)
     },
   },
-
+  created() {},
   methods: {
     formatDate(date) {
       if (!date) return null
@@ -96,5 +153,19 @@ export default {
 
 ::v-deep .v-text-field__slot {
   color: #fff !important;
+  width: 90px;
+}
+
+.content {
+  margin-top: 30px;
+}
+.content > .booking-card {
+  display: inline-block;
+  margin: 0 10px 20px 0;
+}
+
+.search-field {
+  padding-top: 10px;
+  width: 0px;
 }
 </style>
