@@ -1,35 +1,35 @@
 {
   "data": [
     {
-      "name": "Nguyễn Văn A",
+      "name": "Nguyễn Hữu A",
       "phonenumber": "0946727052",
       "sex": "male",
       "address": "Ha Noi",
       "email": "NguyenvanA@gmail.com"
     },
     {
-      "name": "Nguyễn Văn B",
+      "name": "Nguyễn Hữu B",
       "phonenumber": "0136478765",
       "sex": "male",
       "address": "Nghe An",
       "email": "NguyenvanBgmail.com"
     },
     {
-      "name": "Nguyễn Văn C",
+      "name": "Nguyễn Hữu C",
       "phonenumber": "0345678990",
       "sex": "male",
       "address": "Ha Noi",
       "email": "NguyenvanC@gmail.com"
     },
     {
-      "name": "Nguyễn Văn D",
+      "name": "Nguyễn Hữu D",
       "phonenumber": "0236767889",
       "sex": "female",
       "address": "Nghe An",
       "email": "NguyenvanD@gmail.com"
     },
     {
-      "name": "Nguyễn Văn E",
+      "name": "Nguyễn Hữu E",
       "phonenumber": "0236767889",
       "sex": "female",
       "address": "Nghe An",
