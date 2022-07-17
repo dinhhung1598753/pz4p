@@ -7,13 +7,13 @@
     >
       <template #top>
         <v-toolbar flat color="base">
-          <v-toolbar-title class="text-light">STAFFS</v-toolbar-title>
+          <v-toolbar-title class="text-light">CUSTOMERS</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
             <template #activator="{ on, attrs }">
               <v-btn dark class="mb-2" v-bind="attrs" v-on="on">
-                New Staff
+                New Customer
               </v-btn>
             </template>
             <v-card>
@@ -70,7 +70,7 @@
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5"
-                >Are you sure you want to delete this staff?</v-card-title
+                >Are you sure you want to delete this customer?</v-card-title
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -99,9 +99,14 @@
 </template>
 
 <script>
-import { getStaffs, insertStaff, updateStaff, deleteStaff } from '@/models'
+import {
+  getCustomers,
+  insertCustomer,
+  updateCustomer,
+  deleteCustomer,
+} from '@/models'
 export default {
-  name: 'StaffPage',
+  name: 'CustomerPage',
   data: () => ({
     dialog: false,
     dialogDelete: false,
@@ -137,7 +142,7 @@ export default {
   }),
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? 'New Staff' : 'Edit Staff'
+      return this.editedIndex === -1 ? 'New Customer' : 'Edit Customer'
     },
   },
   watch: {
@@ -153,7 +158,7 @@ export default {
   },
   methods: {
     initialize() {
-      this.desserts = getStaffs()
+      this.desserts = getCustomers()
     },
     editItem(item) {
       this.editedIndex = this.desserts.indexOf(item)
@@ -166,7 +171,7 @@ export default {
       this.dialogDelete = true
     },
     deleteItemConfirm() {
-      deleteStaff(this.editedItem.id)
+      deleteCustomer(this.editedItem.id)
       this.desserts.splice(this.editedIndex, 1)
       this.closeDelete()
     },
@@ -186,10 +191,10 @@ export default {
     },
     save() {
       if (this.editedIndex > -1) {
-        updateStaff(this.editedItem)
+        updateCustomer(this.editedItem)
         Object.assign(this.desserts[this.editedIndex], this.editedItem)
       } else {
-        insertStaff(this.editedItem)
+        insertCustomer(this.editedItem)
         this.desserts.push(this.editedItem)
       }
       this.close()
