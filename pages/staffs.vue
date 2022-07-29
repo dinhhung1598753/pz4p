@@ -2,7 +2,7 @@
   <v-container>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="staffs"
       class="elevation-1 app-table"
     >
       <template #top>
@@ -118,7 +118,7 @@ export default {
       { text: 'Email', value: 'email' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],
-    desserts: [],
+    staffs: [],
     editedIndex: -1,
     editedItem: {
       name: '',
@@ -153,21 +153,21 @@ export default {
   },
   methods: {
     initialize() {
-      this.desserts = getStaffs()
+      this.staffs = getStaffs()
     },
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item)
+      this.editedIndex = this.staffs.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
     deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item)
+      this.editedIndex = this.staffs.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
     deleteItemConfirm() {
       deleteStaff(this.editedItem.id)
-      this.desserts.splice(this.editedIndex, 1)
+      this.staffs.splice(this.editedIndex, 1)
       this.closeDelete()
     },
     close() {
@@ -187,10 +187,10 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         updateStaff(this.editedItem)
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        Object.assign(this.staffs[this.editedIndex], this.editedItem)
       } else {
         insertStaff(this.editedItem)
-        this.desserts.push(this.editedItem)
+        this.staffs.push(this.editedItem)
       }
       this.close()
     },
