@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "name": "Pizza",
+      "category": "main course",
+      "price": "100$",
+      "description": "A delicious meal for family",
+      "image": "hinh anh pizza"
+    },
+    {
+      "name": "King crap",
+      "category": "main course",
+      "price": "3000$",
+      "description": "A delicious meal for family",
+      "image": "hinh anh con cua"
+    },
+    {
+      "name": "Chocolate icecream",
+      "category": "dessert",
+      "price": "15$",
+      "description": "A delicious meal for family",
+      "image": "hinh anh cay kem"
+    },
+    {
+      "name": "Salad",
+      "category": "side dish",
+      "price": "30$",
+      "description": "A delicious meal for family",
+      "image": "hinh anh salad"
+    },
+    {
+      "name": "Starbuck",
+      "category": "drink",
+      "price": "1000$",
+      "description": "A delicious meal for family",
+      "image": "hinh anh coc ca phe"
+    }
+  ]
+}

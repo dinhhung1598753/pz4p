@@ -2,11 +2,11 @@ import Axios from 'axios'
 import { data } from '@/mocks/staffs.json'
 
 export const getStaffs = () => {
-  // Axios.get('http://localhost:5000/staffs')
-  //   .then((res) => {
-  //     return res.data
-  //   })
-  //   .catch((error) => console.log('error:', error))
+  Axios.get('http://localhost:5000/staffs')
+    .then((res) => {
+      return res.data
+    })
+    .catch((error) => console.log('error:', error))
   return data
 }
 
