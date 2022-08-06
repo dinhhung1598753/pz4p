@@ -23,38 +23,41 @@
 
               <v-card-text>
                 <v-container>
-                  <v-row>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.name"
-                        label="name"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.phonenumeber"
-                        label="phonenumeber"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.sex"
-                        label="sex"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.address"
-                        label="address"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
-                        v-model="editedItem.email"
-                        label="email"
-                      ></v-text-field>
-                    </v-col>
-                  </v-row>
+                  <v-form ref="form">
+                    <v-row>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.name"
+                          label="name"
+                          :rules="formRules.name"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.category"
+                          label="category"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.price"
+                          label="price"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.description"
+                          label="description"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.image"
+                          label="image"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-form>
                 </v-container>
               </v-card-text>
 
@@ -134,6 +137,9 @@ export default {
       description: '',
       image: '',
     },
+    formRules: {
+      name: [(v) => v.length >= 1 || 'Please enter the dish'],
+    },
   }),
   computed: {
     formTitle() {
@@ -185,6 +191,7 @@ export default {
       })
     },
     save() {
+      if (!this.$refs.form.validate()) return
       if (this.editedIndex > -1) {
         updateMenu(this.editedItem)
         Object.assign(this.menus[this.editedIndex], this.editedItem)

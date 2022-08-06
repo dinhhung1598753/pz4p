@@ -36,6 +36,7 @@
                         <v-text-field
                           v-model="editedItem.phonenumeber"
                           label="phonenumeber"
+                          :rules="formRules.phone"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
@@ -138,8 +139,8 @@ export default {
       email: '',
     },
     formRules: {
-      name: (v) =>
-        (v && v.length <= 5) || 'Name must be less than 5 characters',
+      name: [(v) => v.length >= 1 || 'This field is required'],
+      phone: [((v) => v && v.length === 10) || 'This field is required'],
     },
   }),
   computed: {
