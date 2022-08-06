@@ -1,5 +1,9 @@
 import axios from 'axios'
 
-export const api = axios.create({
-  baseURL: process.ENV.BASE_URL,
-})
+function createApi() {
+  return axios.create({
+    baseURL: process.ENV.BASE_URL,
+  })
+}
+
+export const api = createApi()

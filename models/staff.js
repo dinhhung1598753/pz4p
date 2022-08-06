@@ -1,8 +1,9 @@
-import Axios from 'axios'
+import api from '~/api'
 import { data } from '@/mocks/staffs.json'
 
 export const getStaffs = () => {
-  Axios.get('http://localhost:5000/staffs')
+  api
+    .get('http://localhost:5000/staffs')
     .then((res) => {
       return res.data
     })
@@ -11,7 +12,8 @@ export const getStaffs = () => {
 }
 
 export const getStaffDetail = (id) => {
-  Axios.get('http://localhost:5000/staffs/' + id)
+  api
+    .get('http://localhost:5000/staffs/' + id)
     .then((res) => {
       return res.data
     })
@@ -29,7 +31,8 @@ export const getStaffDetail = (id) => {
 // }
 
 export function insertStaff(data) {
-  Axios.post('http://localhost:5000/staffs/', data)
+  api
+    .post('http://localhost:5000/staffs/', data)
     .then((res) => {
       return res.status // 201
     })
@@ -45,7 +48,8 @@ export function insertStaff(data) {
 //   email: "NguyenvanA@gmail.com"
 // }
 export function updateStaff(data, id) {
-  Axios.put('http://localhost:5000/staffs/' + id, data)
+  api
+    .put('http://localhost:5000/staffs/' + id, data)
     .then((res) => {
       return res.data // 200
     })
@@ -53,7 +57,8 @@ export function updateStaff(data, id) {
   return data
 }
 export function deleteStaff(id) {
-  Axios.delete('http://localhost:5000/staffs/' + id)
+  api
+    .delete('http://localhost:5000/staffs/' + id)
     .then((res) => {
       return res.data // 204
     })
