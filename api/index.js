@@ -2,7 +2,7 @@ import axios from 'axios'
 
 function createApi() {
   return axios.create({
-    baseURL: process.ENV.BASE_URL,
+    baseURL: process.env.BASE_URL,
   })
 }
 

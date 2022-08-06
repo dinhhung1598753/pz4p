@@ -2,12 +2,12 @@ import api from '~/api'
 import { data } from '@/mocks/staffs.json'
 
 export const getStaffs = () => {
-  api
-    .get('http://localhost:5000/staffs')
-    .then((res) => {
-      return res.data
-    })
-    .catch((error) => console.log('error:', error))
+  // api
+  //   .get('http://localhost:5000/staffs')
+  //   .then((res) => {
+  //     return res.data
+  //   })
+  //   .catch((error) => console.log('error:', error))
   return data
 }
 

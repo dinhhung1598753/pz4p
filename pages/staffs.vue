@@ -138,7 +138,8 @@ export default {
       email: '',
     },
     formRules: {
-      name: /^[a-zA-Z]+(?:-[a-zA-Z]+)*$/.test(this.name),
+      name: (v) =>
+        (v && v.length <= 5) || 'Name must be less than 5 characters',
     },
   }),
   computed: {
