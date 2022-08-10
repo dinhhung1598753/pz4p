@@ -121,7 +121,7 @@ export default {
       { text: 'Image', value: 'image' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],
-    Menus: [],
+    menus: [],
     editedIndex: -1,
     editedItem: {
       name: '',
@@ -154,12 +154,12 @@ export default {
       val || this.closeDelete()
     },
   },
-  created() {
-    this.initialize()
+  async created() {
+    await this.initialize()
   },
   methods: {
-    initialize() {
-      this.menus = getMenus()
+    async initialize() {
+      this.menus = await getMenus()
     },
     editItem(item) {
       this.editedIndex = this.menus.indexOf(item)
