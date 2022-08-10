@@ -2,7 +2,7 @@
   <v-container>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="customers"
       class="elevation-1 app-table"
     >
       <template #top>
@@ -27,6 +27,13 @@
                     <v-row>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
+                          v-model="editedItem.username"
+                          label="username"
+                          :rules="formRules.name"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
                           v-model="editedItem.name"
                           label="name"
                           :rules="formRules.name"
@@ -34,8 +41,8 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.phonenumeber"
-                          label="phonenumeber"
+                          v-model="editedItem.phoneNumber"
+                          label="phonenumber"
                           :rules="formRules.phone"
                         ></v-text-field>
                       </v-col>
@@ -116,35 +123,43 @@ export default {
     dialogDelete: false,
     headers: [
       {
+        text: 'UserName',
+        align: 'start',
+        sortable: false,
+        value: 'username',
+      },
+      {
         text: 'Name',
         align: 'start',
         sortable: false,
         value: 'name',
       },
-      { text: 'Phonenumber', value: 'phonenumber' },
+      { text: 'Phonenumber', value: 'phoneNumber' },
       { text: 'Sex', value: 'sex' },
       { text: 'Address', value: 'address' },
       { text: 'Email', value: 'email' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],
-    desserts: [],
+    customers: [],
     editedIndex: -1,
     editedItem: {
+      username: '',
       name: '',
-      phonenumber: '',
+      phoneNumber: '',
       sex: '',
       address: '',
       email: '',
     },
     defaultItem: {
+      username: '',
       name: '',
-      phonenumber: '',
+      phoneNumber: '',
       sex: '',
       address: '',
       email: '',
     },
     formRules: {
-      name: [(v) => v.length >= 1 || 'Please enter your name'],
+      name: [(v) => v.length >= 1 || 'This field is required'],
       phone: [((v) => v && v.length === 10) || 'This field is required'],
     },
   }),
@@ -161,26 +176,26 @@ export default {
       val || this.closeDelete()
     },
   },
-  created() {
-    this.initialize()
+  async created() {
+    await this.initialize()
   },
   methods: {
-    initialize() {
-      this.desserts = getCustomers()
+    async initialize() {
+      this.customers = await getCustomers()
     },
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item)
+      this.editedIndex = this.customers.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
     deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item)
+      this.editedIndex = this.customers.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
     deleteItemConfirm() {
       deleteCustomer(this.editedItem.id)
-      this.desserts.splice(this.editedIndex, 1)
+      this.customers.splice(this.editedIndex, 1)
       this.closeDelete()
     },
     close() {
@@ -197,15 +212,26 @@ export default {
         this.editedIndex = -1
       })
     },
-    save() {
+    async save() {
       if (!this.$refs.form.validate()) return
+
       if (this.editedIndex > -1) {
-        updateCustomer(this.editedItem)
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        await updateCustomer(
+          {
+            ...this.editedItem,
+            password: Number(this.editedItem.password),
+            phoneNumber: Number(this.editedItem.phoneNumber),
+          },
+          this.editedItem.id
+        )
       } else {
-        insertCustomer(this.editedItem)
-        this.desserts.push(this.editedItem)
+        this.editedItem.password = 123456
+        await insertCustomer({
+          ...this.editedItem,
+          phoneNumber: Number(this.editedItem.phoneNumber),
+        })
       }
+      await this.initialize()
       this.close()
     },
   },
