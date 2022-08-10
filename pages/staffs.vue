@@ -27,6 +27,13 @@
                     <v-row>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
+                          v-model="editedItem.username"
+                          label="name"
+                          :rules="formRules.name"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
                           v-model="editedItem.name"
                           label="name"
                           :rules="formRules.name"
@@ -34,8 +41,8 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.phonenumeber"
-                          label="phonenumeber"
+                          v-model="editedItem.phoneNumber"
+                          label="phonenumber"
                           :rules="formRules.phone"
                         ></v-text-field>
                       </v-col>
@@ -111,12 +118,18 @@ export default {
     dialogDelete: false,
     headers: [
       {
+        text: 'UserName',
+        align: 'start',
+        sortable: false,
+        value: 'username',
+      },
+      {
         text: 'Name',
         align: 'start',
         sortable: false,
         value: 'name',
       },
-      { text: 'Phonenumber', value: 'phonenumber' },
+      { text: 'Phonenumber', value: 'phoneNumber' },
       { text: 'Sex', value: 'sex' },
       { text: 'Address', value: 'address' },
       { text: 'Email', value: 'email' },
@@ -125,15 +138,17 @@ export default {
     staffs: [],
     editedIndex: -1,
     editedItem: {
+      username: '',
       name: '',
-      phonenumber: '',
+      phoneNumber: '',
       sex: '',
       address: '',
       email: '',
     },
     defaultItem: {
+      username: '',
       name: '',
-      phonenumber: '',
+      phoneNumber: '',
       sex: '',
       address: '',
       email: '',
@@ -156,12 +171,12 @@ export default {
       val || this.closeDelete()
     },
   },
-  created() {
-    this.initialize()
+  async created() {
+    await this.initialize()
   },
   methods: {
-    initialize() {
-      this.staffs = getStaffs()
+    async initialize() {
+      this.staffs = await getStaffs()
     },
     editItem(item) {
       this.editedIndex = this.staffs.indexOf(item)
@@ -192,15 +207,26 @@ export default {
         this.editedIndex = -1
       })
     },
-    save() {
+    async save() {
       if (!this.$refs.form.validate()) return
+
       if (this.editedIndex > -1) {
-        updateStaff(this.editedItem)
-        Object.assign(this.staffs[this.editedIndex], this.editedItem)
+        await updateStaff(
+          {
+            ...this.editedItem,
+            password: Number(this.editedItem.password),
+            phoneNumber: Number(this.editedItem.phoneNumber),
+          },
+          this.editedItem.id
+        )
       } else {
-        insertStaff(this.editedItem)
-        this.staffs.push(this.editedItem)
+        this.editedItem.password = 123456
+        await insertStaff({
+          ...this.editedItem,
+          phoneNumber: Number(this.editedItem.phoneNumber),
+        })
       }
+      await this.initialize()
       this.close()
     },
   },
