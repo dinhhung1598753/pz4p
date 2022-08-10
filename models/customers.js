@@ -1,63 +1,64 @@
-import Axios from 'axios'
-import { data } from '@/mocks/customers.json'
+import { api } from '~/api'
 
-export const getCustomers = () => {
-  Axios.get('http://localhost:5000/customers')
-    .then((res) => {
-      return res.data
-    })
-    .catch((error) => console.log('error:', error))
-  return data
+export const getCustomers = async () => {
+  const res = await api.get('/customer').catch(() => {
+    return []
+  })
+  return res.data
 }
 
-export const getCustomerDetail = (id) => {
-  Axios.get('http://localhost:5000/customers/' + id)
-    .then((res) => {
-      return res.data
-    })
-    .catch((error) => console.log('error:', error))
-  // return data
+export const getCustomerDetail = async (id) => {
+  const res = await api.get('/customer/' + id).catch((error) => {
+    console.log('error:', error)
+    return null
+  })
+  return res.data
 }
 
 // data =
 // {
-//   "name": "Nguyễn Hữu A",
-//   "phonenumber": "0946727052",
-//   "sex": "male",
-//   "address": "Ha Noi",
-//   "email": "NguyenvanA@gmail.com"
+//   name: "Nguyễn Văn A",
+//   phonenumber: "0946727052",
+//   sex: "male",
+//   address: "Ha Noi",
+//   email: "NguyenvanA@gmail.com"
 // }
 
-export function insertCustomer(data) {
-  Axios.post('http://localhost:5000/customers/', data)
-    .then((res) => {
-      return res.status // 201
-    })
+export const insertCustomer = async (data) => {
+  const res = await api
+    .post('/customer', data)
     .catch((error) => console.log('error:', error))
-  return data
+  return res.status
 }
-//  data =
-// {
-//   "name": "Nguyễn Hữu A",
-//   "phonenumber": "0946727052",
-//   "sex": "male",
-//   "address": "Ha Noi",
-//   "email": "NguyenvanA@gmail.com"
-// }
 
-export function updateCustomer(data, id) {
-  Axios.put('http://localhost:5000/customers/' + id, data)
+<<<<<<< HEAD
+export function updateStaff(data, id) {
+  api
+    .put('http://localhost:5000/customers/' + id, data)
     .then((res) => {
       return res.data // 200
     })
     .catch((error) => console.log('error:', error))
   return data
 }
-export function deleteCustomer(id) {
-  Axios.delete('http://localhost:5000/customers/' + id)
-    .then((res) => {
-      return res.data // 204
+export const deleteCustomer = async (id) => {
+  const res = await api
+    .delete('/customer', {})
+
+    .catch((error) => console.log('error:', error))
+=======
+export const updateCustomer = async (data, id) => {
+  const res = await api
+    .put('/customer/' + id, data)
+    .catch((error) => console.log('error:', error))
+  return res.data
+}
+export const deleteCustomer = async (id) => {
+  const res = await api
+    .delete('/customer', {
+      data: [id],
     })
     .catch((error) => console.log('error:', error))
-  return data
+>>>>>>> a0722d20a30406fe84af865a11604350e35beb3f
+  return res.status
 }

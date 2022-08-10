@@ -31,6 +31,7 @@ export const insertStaff = async (data) => {
   return res.status
 }
 
+<<<<<<< HEAD
 export function updateStaff(data, id) {
   api
     .put('http://localhost:5000/staffs/' + id, data)
@@ -45,5 +46,19 @@ export const deleteStaff = async (id) => {
     .delete('/staff', {})
 
     .catch((error) => console.log('error:', error))
+=======
+export const updateStaff = async (data, id) => {
+  const res = await api
+    .put('/staff/' + id, data)
+    .catch((error) => console.log('error:', error))
+  return res.data
+}
+export const deleteStaff = async (id) => {
+  const res = await api
+    .delete('/staff', {
+      data: [id],
+    })
+    .catch((error) => console.log('error:', error))
+>>>>>>> a0722d20a30406fe84af865a11604350e35beb3f
   return res.status
 }
