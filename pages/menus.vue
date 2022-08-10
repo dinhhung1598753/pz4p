@@ -118,7 +118,6 @@ export default {
       { text: 'Category', value: 'category' },
       { text: 'Price', value: 'price' },
       { text: 'Description', value: 'description' },
-      { text: 'Image', value: 'image' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],
     menus: [],
@@ -190,15 +189,14 @@ export default {
         this.editedIndex = -1
       })
     },
-    save() {
+    async save() {
       if (!this.$refs.form.validate()) return
       if (this.editedIndex > -1) {
-        updateMenu(this.editedItem)
-        Object.assign(this.menus[this.editedIndex], this.editedItem)
+        await updateMenu(this.editedItem, this.editedItem.id)
       } else {
-        insertMenu(this.editedItem)
-        this.menus.push(this.editedItem)
+        await insertMenu(this.editedItem)
       }
+      await this.initialize()
       this.close()
     },
   },
