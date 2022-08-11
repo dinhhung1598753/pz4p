@@ -1,0 +1,72 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "isBooked": true,
+      "customer": {
+        "name": "abc",
+        "phoneNumber": 123123
+      }
+    },
+    {
+      "id": 2,
+      "isBooked": true,
+      "customer": {
+        "name": "abc",
+        "phoneNumber": 123123
+      }
+    },
+    {
+      "id": 3,
+      "isBooked": true,
+      "customer": {
+        "name": "abc",
+        "phoneNumber": 123123
+      }
+    },
+    {
+      "id": 4,
+      "isBooked": true,
+      "customer": {
+        "name": "abc",
+        "phoneNumber": 123123
+      }
+    },
+    {
+      "id": 5,
+      "isBooked": false,
+      "customer": {}
+    },
+    {
+      "id": 6,
+      "isBooked": false,
+      "customer": {}
+    },
+    {
+      "id": 7,
+      "isBooked": false,
+      "customer": {}
+    },
+    {
+      "id": 8,
+      "isBooked": true,
+      "customer": {
+        "name": "abc",
+        "phoneNumber": 123123
+      }
+    },
+    {
+      "id": 9,
+      "isBooked": true,
+      "customer": {
+        "name": "abc",
+        "phoneNumber": 123123
+      }
+    },
+    {
+      "id": 10,
+      "isBooked": false,
+      "customer": {}
+    }
+  ]
+}

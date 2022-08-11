@@ -51,10 +51,11 @@
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
-                        <v-text-field
+                        <v-file-input
                           v-model="editedItem.image"
-                          label="image"
-                        ></v-text-field>
+                          accept="image/*"
+                          label="File input"
+                        ></v-file-input>
                       </v-col>
                     </v-row>
                   </v-form>
@@ -170,9 +171,9 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
-    deleteItemConfirm() {
-      deleteMenu(this.editedItem.id)
-      this.menus.splice(this.editedIndex, 1)
+    async deleteItemConfirm() {
+      await deleteMenu(this.editedItem.id)
+      await this.initialize()
       this.closeDelete()
     },
     close() {

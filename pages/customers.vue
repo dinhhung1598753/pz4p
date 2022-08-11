@@ -219,7 +219,7 @@ export default {
         await updateCustomer(
           {
             ...this.editedItem,
-            password: Number(this.editedItem.password),
+            password: this.editedItem.password,
             phoneNumber: Number(this.editedItem.phoneNumber),
           },
           this.editedItem.id

@@ -26,8 +26,14 @@ export const getMenuDetail = async (id) => {
 // }
 
 export const insertMenu = async (data) => {
+  const form = new FormData()
+  form.append('name', data.name)
+  form.append('categoryName', data.category)
+  form.append('price', data.price)
+  form.append('shortDescription', data.description)
+  form.append('file', data.image)
   const res = await api
-    .post('/dish', data)
+    .post('/dish', form)
     .catch((error) => console.log('error:', error))
   return res.status
 }

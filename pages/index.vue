@@ -8,7 +8,7 @@
       <div class="intro">
         <div class="left">
           <span>Welcome to </span>
-          <span class="name">Pizza 4P's</span>
+          <span class="name">MPEC Restaurant</span>
         </div>
         <div class="right">
           <p>
@@ -20,7 +20,7 @@
             to evolve and improve every day so that we can always fulfill our
             mission of "Delivering Wow, Sharing Happiness" to every guest.
           </p>
-          <p class="btn-about">About Pizza 4P's</p>
+          <p class="btn-about">About MPEC Restaurant</p>
         </div>
       </div>
       <div>
@@ -53,13 +53,13 @@
             ><br /><br
           /></span>
           <span class="description"
-            >Back in 2005, the founder of Pizza 4P's, Masuko, built a wood-fired
-            pizza oven with his friends in the backyard of his house. He invited
-            his friends and family and hosted pizza parties.<br />
+            >Back in 2005, the founder of MPEC Restaurant, Masuko, built a
+            wood-fired pizza oven with his friends in the backyard of his house.
+            He invited his friends and family and hosted pizza parties.<br />
             In 2011, the original members who once made the pizza oven gathered
-            again and started the history of Pizza 4P's. We named our restaurant
-            Pizza 4P's, based on our vision, Make the World Smile "For
-            Peace."</span
+            again and started the history of MPEC Restaurant. We named our
+            restaurant MPEC Restaurant, based on our vision, Make the World
+            Smile "For Peace."</span
           >
         </div>
         <div class="right">

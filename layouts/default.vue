@@ -74,7 +74,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "Pizza 4P's",
+      title: 'MPEC Restaurant',
     }
   },
 }

@@ -65,25 +65,35 @@
     </v-app-bar>
     <div class="content">
       <v-row>
-        <v-col v-for="index in 10" :key="index" cols="4">
-          <v-card class="booking-card" outlined cols="md-3">
+        <v-col v-for="item in bookings" :key="item.id" cols="4">
+          <v-card
+            class="booking-card"
+            outlined
+            cols="md-3"
+            :style="{ 'background-color': item.isBooked ? '#eeaeae' : '#fff' }"
+          >
             <v-list-item three-line>
               <v-list-item-content>
-                <div class="mb-4">BÀN {{ index }}</div>
+                <div class="mb-4">BÀN {{ item.id }}</div>
                 <v-list-item-title class="text-h5 mb-1">
-                  Người đặt bàn
+                  {{ item.isBooked ? item.customer.name : 'Người đặt bàn' }}
                 </v-list-item-title>
                 <v-list-item-subtitle
-                  >Số điện thoại fonwderfully</v-list-item-subtitle
+                  >Phone:
+                  {{
+                    item.isBooked ? item.customer.phoneNumber : 'Số điện thoại'
+                  }}</v-list-item-subtitle
                 >
                 <v-list-item-subtitle>Giờ hẹn</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
             <v-card-actions>
-              <v-btn outlined rounded text> Đặt bàn </v-btn>
-              <v-btn outlined rounded text> Hủy bàn </v-btn>
-              <v-btn outlined rounded text> Thanh toán </v-btn>
+              <v-btn v-show="!item.isBooked" outlined rounded text> Đặt </v-btn>
+              <v-btn v-show="item.isBooked" outlined rounded text> Hủy </v-btn>
+              <v-btn v-show="item.isBooked" outlined rounded text>
+                Thanh toán
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -93,6 +103,7 @@
 </template>
 
 <script>
+import { getBookings } from '@/models'
 export default {
   name: 'BookingPage',
   data: (vm) => ({
@@ -108,6 +119,7 @@ export default {
     menu1: false,
     menu2: false,
     search: '',
+    bookings: [],
   }),
 
   computed: {
@@ -121,8 +133,13 @@ export default {
       this.dateFormatted = this.formatDate(this.date)
     },
   },
-  created() {},
+  created() {
+    this.initialize()
+  },
   methods: {
+    initialize() {
+      this.bookings = getBookings()
+    },
     formatDate(date) {
       if (!date) return null
 
